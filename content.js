@@ -12,6 +12,17 @@
   }
   window.__airtimeLoaded = true;
 
+  // ---- i18n: localized strings are auto-selected by chrome.i18n based on
+  // the browser's UI locale (the _locales method). No manual selection needed. ----
+  function t(key, subs) {
+    try {
+      const msg = chrome.i18n.getMessage(key, subs);
+      return msg || key;
+    } catch (_) {
+      return key;
+    }
+  }
+
   // ---- WPM thresholds (words per minute), user-configurable ----
   let wpmLow = 110; // below this = too slow
   let wpmHigh = 160; // above this = too fast
@@ -47,51 +58,51 @@
         <span>Airtime</span>
       </div>
       <div class="airtime-header-actions">
-        <button class="airtime-gear" id="airtime-gear" title="Settings">${gearSvg()}</button>
-        <button class="airtime-close" id="airtime-close" title="Close">&times;</button>
+        <button class="airtime-gear" id="airtime-gear" title="${t("settings")}">${gearSvg()}</button>
+        <button class="airtime-close" id="airtime-close" title="${t("close")}">&times;</button>
       </div>
     </div>
     <div class="airtime-body">
       <div class="airtime-settings airtime-collapsed" id="airtime-settings">
-        <div class="airtime-settings-title">Ideal WPM range</div>
+        <div class="airtime-settings-title">${t("idealWpmRange")}</div>
         <div class="airtime-settings-row">
-          <label class="airtime-field">Low
+          <label class="airtime-field">${t("low")}
             <input type="number" id="airtime-low" min="40" max="400" step="1">
           </label>
-          <label class="airtime-field">High
+          <label class="airtime-field">${t("high")}
             <input type="number" id="airtime-high" min="40" max="400" step="1">
           </label>
         </div>
         <label class="airtime-toggle">
           <input type="checkbox" id="airtime-dod">
-          <span>Download on discard</span>
-          <span class="airtime-info" tabindex="0" title="Before an old recording is discarded, it'll be downloaded to your device.">i</span>
+          <span>${t("downloadOnDiscard")}</span>
+          <span class="airtime-info" tabindex="0" title="${t("downloadOnDiscardInfo")}">i</span>
         </label>
         <label class="airtime-toggle">
           <input type="checkbox" id="airtime-dark">
-          <span>Dark mode</span>
+          <span>${t("darkMode")}</span>
         </label>
-        <button class="airtime-save" id="airtime-save">Save range</button>
+        <button class="airtime-save" id="airtime-save">${t("saveRange")}</button>
         <div class="airtime-settings-msg" id="airtime-settings-msg"></div>
       </div>
 
       <div class="airtime-controls">
-        <button class="airtime-mic" id="airtime-mic" title="Start recording">
+        <button class="airtime-mic" id="airtime-mic" title="${t("startRecording")}">
           ${micSvg()}
         </button>
-        <button class="airtime-secondary" id="airtime-pause" disabled>Pause</button>
-        <div class="airtime-note" id="airtime-note">Click the mic to start</div>
+        <button class="airtime-secondary" id="airtime-pause" disabled>${t("pause")}</button>
+        <div class="airtime-note" id="airtime-note">${t("clickMicToStart")}</div>
       </div>
 
       <div class="airtime-wpm">
         <span class="airtime-wpm-value" id="airtime-wpm">--</span>
-        <span class="airtime-wpm-label">WPM</span>
+        <span class="airtime-wpm-label">${t("wpm")}</span>
       </div>
       <div class="airtime-wpm-hint" id="airtime-wpm-hint"></div>
 
       <div class="airtime-collapsible">
         <button class="airtime-collapse-head" data-target="airtime-transcript-body">
-          <span>Live transcript</span>
+          <span>${t("liveTranscript")}</span>
           ${chevronSvg()}
         </button>
         <div class="airtime-collapse-body airtime-collapsed" id="airtime-transcript-body">
@@ -103,18 +114,18 @@
 
       <div class="airtime-collapsible">
         <button class="airtime-collapse-head" data-target="airtime-history-body">
-          <span>Recordings</span>
+          <span>${t("recordings")}</span>
           ${chevronSvg()}
         </button>
         <div class="airtime-collapse-body airtime-collapsed" id="airtime-history-body">
           <div class="airtime-history-tools">
-            <button class="airtime-clear" id="airtime-clear" disabled>Clear all</button>
+            <button class="airtime-clear" id="airtime-clear" disabled>${t("clearAll")}</button>
           </div>
           <div class="airtime-history" id="airtime-history">
-            <div class="airtime-history-empty">No recordings yet</div>
+            <div class="airtime-history-empty">${t("noRecordings")}</div>
           </div>
           <div class="airtime-share">
-            <a href="https://chromewebstore.google.com/detail/airtime" target="_blank" rel="noopener noreferrer">Share</a> us with your friends.
+            <a href="https://chromewebstore.google.com/detail/pnfhhjbliopikajmkpichdkjdcgmdjjb" target="_blank" rel="noopener noreferrer">${t("shareLink")}</a> ${t("shareSuffix")}
           </div>
         </div>
       </div>
@@ -191,7 +202,7 @@
     try {
       mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
     } catch (err) {
-      showError("Microphone access was blocked. Please allow mic access.");
+      showError(t("micBlocked"));
       return;
     }
 
@@ -206,7 +217,7 @@
     try {
       mediaRecorder = new MediaRecorder(mediaStream);
     } catch (err) {
-      showError("Recording is not supported in this browser.");
+      showError(t("recordingNotSupported"));
       stopStream();
       return;
     }
@@ -263,6 +274,7 @@
     const text = (finalTranscript + interimTranscript).trim();
     if (blob.size === 0 && !text) return; // nothing captured
 
+
     const now = new Date();
     const wpm = computeWpm();
     const stamp = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
@@ -275,7 +287,7 @@
         name: `Airtime ${stamp}`,
         fileName: `Airtime_${lengthStr}_${wpm}wpm`,
         audioData: reader.result || "",
-        text: text || "(no transcript captured)",
+        text: text || t("noTranscriptCaptured"),
         wpm: wpm,
         ext: extFromMime(blob.type)
       };
@@ -295,14 +307,15 @@
   function startRecognition() {
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SR) {
-      els.wpmHint.textContent = "Live transcript unavailable in this browser";
+      els.wpmHint.textContent = t("transcriptUnavailable");
       return;
     }
     recognitionShouldRun = true;
     recognition = new SR();
     recognition.continuous = true;
     recognition.interimResults = true;
-    recognition.lang = navigator.language || "en-US";
+    // Match the auto-selected UI locale so the transcript recognizes that language.
+    recognition.lang = t("speechLang") || navigator.language || "en-US";
 
     recognition.onresult = (event) => {
       interimTranscript = "";
@@ -319,7 +332,7 @@
 
     recognition.onerror = (e) => {
       if (e.error === "not-allowed" || e.error === "service-not-allowed") {
-        showError("Speech recognition was blocked.");
+        showError(t("speechBlocked"));
         recognitionShouldRun = false;
       }
     };
@@ -377,20 +390,20 @@
     if (minutes < 0.05) {
       els.wpm.textContent = "--";
       els.wpm.className = "airtime-wpm-value";
-      els.wpmHint.textContent = "Keep speaking...";
+      els.wpmHint.textContent = t("keepSpeaking");
       return;
     }
     const wpm = computeWpm();
     els.wpm.textContent = String(wpm);
     if (wpm < wpmLow) {
       els.wpm.className = "airtime-wpm-value airtime-bad";
-      els.wpmHint.textContent = "A bit slow — pick up the pace";
+      els.wpmHint.textContent = t("paceSlow");
     } else if (wpm > wpmHigh) {
       els.wpm.className = "airtime-wpm-value airtime-bad";
-      els.wpmHint.textContent = "Too fast — slow down a little";
+      els.wpmHint.textContent = t("paceFast");
     } else {
       els.wpm.className = "airtime-wpm-value airtime-good";
-      els.wpmHint.textContent = "Just right — great pace!";
+      els.wpmHint.textContent = t("paceGood");
     }
   }
 
@@ -405,7 +418,7 @@
   function renderHistory() {
     els.clear.disabled = history.length === 0;
     if (history.length === 0) {
-      els.history.innerHTML = `<div class="airtime-history-empty">No recordings yet</div>`;
+      els.history.innerHTML = `<div class="airtime-history-empty">${t("noRecordings")}</div>`;
       return;
     }
     els.history.innerHTML = "";
@@ -415,14 +428,14 @@
       card.innerHTML = `
         <div class="airtime-item-head">
           <span class="airtime-item-name">${escapeHtml(item.name)}</span>
-          <span class="airtime-item-meta">${item.wpm} WPM</span>
+          <span class="airtime-item-meta">${item.wpm} ${t("wpm")}</span>
         </div>
         <div class="airtime-item-actions">
-          <button class="airtime-play" data-idx="${idx}" title="Play recording">
+          <button class="airtime-play" data-idx="${idx}" title="${t("playRecording")}">
             ${playingIdx === idx ? pauseSvg() : playSvg()}
           </button>
-          <button class="airtime-dl" data-type="audio" data-idx="${idx}">Audio</button>
-          <button class="airtime-dl" data-type="text" data-idx="${idx}">Transcript</button>
+          <button class="airtime-dl" data-type="audio" data-idx="${idx}">${t("audio")}</button>
+          <button class="airtime-dl" data-type="text" data-idx="${idx}">${t("transcript")}</button>
         </div>
       `;
       els.history.appendChild(card);
@@ -555,20 +568,20 @@
     const low = parseInt(els.low.value, 10);
     const high = parseInt(els.high.value, 10);
     if (!Number.isFinite(low) || !Number.isFinite(high)) {
-      els.settingsMsg.textContent = "Enter both values.";
+      els.settingsMsg.textContent = t("enterBothValues");
       return;
     }
     if (low < 1 || high < 1) {
-      els.settingsMsg.textContent = "Values must be positive.";
+      els.settingsMsg.textContent = t("valuesMustBePositive");
       return;
     }
     if (low >= high) {
-      els.settingsMsg.textContent = "Low must be less than high.";
+      els.settingsMsg.textContent = t("lowMustBeLessThanHigh");
       return;
     }
     wpmLow = low;
     wpmHigh = high;
-    els.settingsMsg.textContent = `Saved: ${low}–${high} WPM is green.`;
+    els.settingsMsg.textContent = t("savedRange", [String(low), String(high)]);
     persistSettings();
     if (state !== "idle") renderWpm();
   }
@@ -599,26 +612,26 @@
     state = next;
     if (next === "recording") {
       els.mic.classList.add("airtime-recording");
-      els.mic.title = "Stop recording";
+      els.mic.title = t("stopRecording");
       els.dot.classList.add("airtime-live");
       els.pause.disabled = false;
-      els.pause.textContent = "Pause";
-      els.note.textContent = "Click the mic to end";
+      els.pause.textContent = t("pause");
+      els.note.textContent = t("clickMicToEnd");
     } else if (next === "paused") {
       els.mic.classList.add("airtime-recording");
-      els.mic.title = "Stop recording";
+      els.mic.title = t("stopRecording");
       els.dot.classList.remove("airtime-live");
       els.pause.disabled = false;
-      els.pause.textContent = "Resume";
-      els.note.textContent = "Paused — click the mic to end";
+      els.pause.textContent = t("resume");
+      els.note.textContent = t("pausedClickMicToEnd");
     } else {
       // idle
       els.mic.classList.remove("airtime-recording");
-      els.mic.title = "Start recording";
+      els.mic.title = t("startRecording");
       els.dot.classList.remove("airtime-live");
       els.pause.disabled = true;
-      els.pause.textContent = "Pause";
-      els.note.textContent = "Click the mic to start";
+      els.pause.textContent = t("pause");
+      els.note.textContent = t("clickMicToStart");
       els.wpm.textContent = "--";
       els.wpm.className = "airtime-wpm-value";
       els.wpmHint.textContent = "";

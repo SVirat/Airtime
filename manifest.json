@@ -1,14 +1,15 @@
 {
   "manifest_version": 3,
-  "name": "Airtime - Live Speech Practice",
+  "name": "__MSG_extName__",
   "version": "1.0.0",
-  "description": "Practice the pace of your speech with live transcript, audio recording, and WPM feedback.",
+  "description": "__MSG_extDescription__",
+  "default_locale": "en",
   "permissions": ["scripting", "activeTab", "storage", "unlimitedStorage"],
   "background": {
     "service_worker": "background.js"
   },
   "action": {
-    "default_title": "Open Airtime",
+    "default_title": "__MSG_openAirtime__",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",

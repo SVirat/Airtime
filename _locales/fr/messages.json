@@ -1,5 +1,5 @@
 {
-  "extName": { "message": "Airtime - Pratique vocale en direct" },
+  "extName": { "message": "Airtime - Suivi vocal en direct" },
   "extDescription": { "message": "Entraînez-vous au rythme de votre discours avec transcription en direct, enregistrement audio et indicateur WPM." },
   "openAirtime": { "message": "Ouvrir Airtime" },
   "settings": { "message": "Paramètres" },

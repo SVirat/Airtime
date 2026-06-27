@@ -1,0 +1,533 @@
+/* Airtime floating widget styles */
+
+#airtime-root,
+#airtime-root * {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#airtime-root {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  width: 280px;
+  z-index: 2147483647;
+  background: #ffffff;
+  color: #1f2933;
+  border: 1px solid #e3e8ee;
+  border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(31, 41, 51, 0.18);
+  overflow: hidden;
+  user-select: none;
+}
+
+#airtime-root.airtime-hidden {
+  display: none;
+}
+
+/* Header / drag handle */
+.airtime-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: #f5f8fc;
+  border-bottom: 1px solid #e3e8ee;
+  cursor: move;
+}
+
+.airtime-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2d3a4a;
+}
+
+.airtime-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #c3ccd6;
+}
+
+.airtime-dot.airtime-live {
+  background: #e5484d;
+  box-shadow: 0 0 0 0 rgba(229, 72, 77, 0.6);
+  animation: airtime-pulse 1.4s infinite;
+}
+
+@keyframes airtime-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(229, 72, 77, 0.5); }
+  70% { box-shadow: 0 0 0 7px rgba(229, 72, 77, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(229, 72, 77, 0); }
+}
+
+.airtime-close {
+  border: none;
+  background: transparent;
+  color: #8a96a3;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+.airtime-close:hover {
+  background: #e8eef5;
+  color: #46535f;
+}
+
+.airtime-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.airtime-gear {
+  border: none;
+  background: transparent;
+  color: #8a96a3;
+  cursor: pointer;
+  padding: 3px 5px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+}
+.airtime-gear:hover { background: #e8eef5; color: #1e88e5; }
+.airtime-gear svg { width: 16px; height: 16px; }
+
+/* Settings panel */
+.airtime-settings {
+  border: 1px solid #e3e8ee;
+  border-radius: 10px;
+  background: #f5f8fc;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+}
+.airtime-settings.airtime-collapsed { display: none; }
+.airtime-settings-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #3a4754;
+  margin-bottom: 8px;
+}
+.airtime-settings-row {
+  display: flex;
+  gap: 8px;
+}
+.airtime-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: 11px;
+  color: #8a96a3;
+  gap: 4px;
+}
+.airtime-field input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #cfd8e3;
+  border-radius: 7px;
+  font-size: 13px;
+  color: #2d3a4a;
+  background: #ffffff;
+}
+.airtime-field input:focus {
+  outline: none;
+  border-color: #1e88e5;
+}
+.airtime-save {
+  width: 100%;
+  margin-top: 9px;
+  padding: 7px;
+  border: none;
+  border-radius: 8px;
+  background: #1e88e5;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.airtime-save:hover { background: #1a78cc; }
+
+.airtime-toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #3a4754;
+  cursor: pointer;
+}
+.airtime-toggle input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  accent-color: #1e88e5;
+  cursor: pointer;
+}
+.airtime-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #cfd8e3;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  font-style: italic;
+  font-family: Georgia, "Times New Roman", serif;
+  cursor: help;
+}
+.airtime-info:hover { background: #1e88e5; }
+.airtime-settings-msg {
+  margin-top: 6px;
+  font-size: 11px;
+  color: #6b7682;
+  min-height: 14px;
+  text-align: center;
+}
+
+/* Collapsible sections */
+.airtime-collapsible {
+  margin-top: 14px;
+}
+.airtime-collapse-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  background: transparent;
+  padding: 4px 0;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #9aa5b1;
+}
+.airtime-collapse-head:hover { color: #46535f; }
+.airtime-chevron {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.18s ease;
+}
+.airtime-collapse-head.airtime-open .airtime-chevron {
+  transform: rotate(180deg);
+}
+.airtime-collapse-body {
+  margin-top: 6px;
+}
+.airtime-collapse-body.airtime-collapsed { display: none; }
+.airtime-history-tools {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 6px;
+}
+
+/* Body */
+.airtime-body {
+  padding: 14px 14px 16px;
+}
+
+.airtime-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.airtime-mic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: #1e88e5;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, transform 0.1s ease;
+  box-shadow: 0 4px 12px rgba(30, 136, 229, 0.35);
+}
+.airtime-mic:hover { background: #1a78cc; }
+.airtime-mic:active { transform: scale(0.96); }
+.airtime-mic.airtime-recording {
+  background: #e5484d;
+  box-shadow: 0 4px 12px rgba(229, 72, 77, 0.4);
+}
+.airtime-mic.airtime-recording:hover { background: #cf3e43; }
+.airtime-mic svg { width: 26px; height: 26px; }
+
+.airtime-secondary {
+  min-width: 110px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid #cfd8e3;
+  background: #ffffff;
+  color: #3a4754;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.airtime-secondary:hover:not(:disabled) { background: #eef3f9; }
+.airtime-secondary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.airtime-note {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #8a96a3;
+  text-align: center;
+}
+
+/* WPM */
+.airtime-wpm {
+  margin-top: 14px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+  border-radius: 10px;
+  background: #f5f8fc;
+}
+.airtime-wpm-value {
+  font-size: 26px;
+  font-weight: 700;
+  color: #6b7682;
+  transition: color 0.2s ease;
+}
+.airtime-wpm-value.airtime-good { color: #2f9e44; }
+.airtime-wpm-value.airtime-bad { color: #e5484d; }
+.airtime-wpm-label {
+  font-size: 11px;
+  color: #8a96a3;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.airtime-wpm-hint {
+  margin-top: 4px;
+  font-size: 11px;
+  text-align: center;
+  color: #8a96a3;
+  min-height: 14px;
+}
+
+/* Transcript */
+.airtime-section-title {
+  margin: 14px 0 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #9aa5b1;
+}
+
+.airtime-transcript {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #2d3a4a;
+  background: #ffffff;
+  border: 1px solid #e3e8ee;
+  border-radius: 10px;
+  padding: 8px 10px;
+  height: 84px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  user-select: text;
+}
+.airtime-transcript:empty::before {
+  content: "Your words will appear here...";
+  color: #b3bcc6;
+}
+.airtime-interim { color: #95a1ad; }
+
+/* Downloads / history */
+.airtime-history-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 14px 0 6px;
+}
+.airtime-history-head .airtime-section-title {
+  margin: 0;
+}
+.airtime-clear {
+  border: none;
+  background: transparent;
+  color: #8a96a3;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+.airtime-clear:hover { background: #e8eef5; color: #e5484d; }
+.airtime-clear:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.airtime-history {
+  margin-top: 0;
+}
+.airtime-history-empty {
+  font-size: 12px;
+  color: #b3bcc6;
+  text-align: center;
+  padding: 4px 0;
+}
+.airtime-item {
+  border: 1px solid #e3e8ee;
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin-bottom: 7px;
+  background: #fbfcfe;
+}
+.airtime-item-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.airtime-item-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #3a4754;
+}
+.airtime-item-meta {
+  font-size: 11px;
+  color: #8a96a3;
+}
+.airtime-item-actions {
+  display: flex;
+  gap: 6px;
+}
+.airtime-play {
+  flex: 0 0 auto;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 7px;
+  border: 1px solid #cfd8e3;
+  background: #1e88e5;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.airtime-play:hover { background: #1a78cc; }
+.airtime-play svg { width: 14px; height: 14px; }
+.airtime-dl {
+  flex: 1;
+  padding: 5px 8px;
+  border-radius: 7px;
+  border: 1px solid #cfd8e3;
+  background: #ffffff;
+  color: #3a4754;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.15s ease;
+}
+.airtime-dl:hover { background: #eef3f9; }
+
+.airtime-error {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #e5484d;
+  text-align: center;
+  min-height: 0;
+}
+
+/* Scrollbars */
+.airtime-transcript::-webkit-scrollbar { width: 7px; }
+.airtime-transcript::-webkit-scrollbar-thumb {
+  background: #d4dce6;
+  border-radius: 6px;
+}
+
+/* ---- Dark mode ---- */
+#airtime-root.airtime-dark {
+  background: #1e2530;
+  color: #e6ebf2;
+  border-color: #313c4a;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+}
+#airtime-root.airtime-dark .airtime-header {
+  background: #232c38;
+  border-bottom-color: #313c4a;
+}
+#airtime-root.airtime-dark .airtime-title { color: #e6ebf2; }
+#airtime-root.airtime-dark .airtime-dot { background: #4a5666; }
+#airtime-root.airtime-dark .airtime-close,
+#airtime-root.airtime-dark .airtime-gear { color: #95a1ad; }
+#airtime-root.airtime-dark .airtime-close:hover,
+#airtime-root.airtime-dark .airtime-gear:hover { background: #313c4a; color: #e6ebf2; }
+
+#airtime-root.airtime-dark .airtime-settings {
+  background: #232c38;
+  border-color: #313c4a;
+}
+#airtime-root.airtime-dark .airtime-settings-title { color: #e6ebf2; }
+#airtime-root.airtime-dark .airtime-field { color: #95a1ad; }
+#airtime-root.airtime-dark .airtime-field input {
+  background: #1a212b;
+  border-color: #3a4656;
+  color: #e6ebf2;
+}
+#airtime-root.airtime-dark .airtime-toggle { color: #cdd6e0; }
+#airtime-root.airtime-dark .airtime-settings-msg { color: #95a1ad; }
+
+#airtime-root.airtime-dark .airtime-secondary {
+  background: #2a3340;
+  border-color: #3a4656;
+  color: #cdd6e0;
+}
+#airtime-root.airtime-dark .airtime-secondary:hover:not(:disabled) { background: #323d4d; }
+#airtime-root.airtime-dark .airtime-note,
+#airtime-root.airtime-dark .airtime-wpm-label,
+#airtime-root.airtime-dark .airtime-wpm-hint { color: #95a1ad; }
+
+#airtime-root.airtime-dark .airtime-wpm { background: #232c38; }
+#airtime-root.airtime-dark .airtime-wpm-value { color: #cdd6e0; }
+#airtime-root.airtime-dark .airtime-wpm-value.airtime-good { color: #51cf66; }
+#airtime-root.airtime-dark .airtime-wpm-value.airtime-bad { color: #ff6b6b; }
+
+#airtime-root.airtime-dark .airtime-collapse-head { color: #95a1ad; }
+#airtime-root.airtime-dark .airtime-collapse-head:hover { color: #e6ebf2; }
+
+#airtime-root.airtime-dark .airtime-transcript {
+  background: #1a212b;
+  border-color: #313c4a;
+  color: #e6ebf2;
+}
+#airtime-root.airtime-dark .airtime-transcript:empty::before { color: #5a6675; }
+#airtime-root.airtime-dark .airtime-interim { color: #7d8a99; }
+
+#airtime-root.airtime-dark .airtime-item {
+  background: #232c38;
+  border-color: #313c4a;
+}
+#airtime-root.airtime-dark .airtime-item-name { color: #e6ebf2; }
+#airtime-root.airtime-dark .airtime-item-meta { color: #95a1ad; }
+#airtime-root.airtime-dark .airtime-history-empty { color: #5a6675; }
+
+#airtime-root.airtime-dark .airtime-dl {
+  background: #2a3340;
+  border-color: #3a4656;
+  color: #cdd6e0;
+}
+#airtime-root.airtime-dark .airtime-dl:hover { background: #323d4d; }
+#airtime-root.airtime-dark .airtime-clear:hover { background: #313c4a; }
+#airtime-root.airtime-dark .airtime-transcript::-webkit-scrollbar-thumb { background: #3a4656; }

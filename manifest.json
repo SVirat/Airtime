@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Airtime",
+  "name": "Airtime - Live Speech Practice",
   "version": "1.0.0",
-  "description": "Practice the pace of your speech with live transcript and WPM feedback.",
+  "description": "Practice the pace of your speech with live transcript, audio recording, and WPM feedback.",
   "permissions": ["scripting", "activeTab", "storage", "unlimitedStorage"],
   "background": {
     "service_worker": "background.js"

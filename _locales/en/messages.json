@@ -1,6 +1,6 @@
 {
   "extName": { "message": "Airtime - Live Speech Tracking" },
-  "extDescription": { "message": "Practice the pace of your speech with live transcript, audio recording, and WPM feedback." },
+  "extDescription": { "message": "Track the pace of your speech with live transcript, audio recording, and WPM feedback." },
   "openAirtime": { "message": "Open Airtime" },
   "settings": { "message": "Settings" },
   "close": { "message": "Close" },

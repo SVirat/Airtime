@@ -1,6 +1,6 @@
 {
   "extName": { "message": "Airtime - 实时演讲跟踪" },
-  "extDescription": { "message": "通过实时转写、录音和 WPM 反馈来练习演讲节奏。" },
+  "extDescription": { "message": "通过实时转写、录音和 WPM 反馈来跟踪演讲节奏。" },
   "openAirtime": { "message": "打开 Airtime" },
   "settings": { "message": "设置" },
   "close": { "message": "关闭" },

@@ -1,6 +1,6 @@
 {
   "extName": { "message": "Airtime - Live-Sprachverfolgung" },
-  "extDescription": { "message": "Üben Sie das Sprechtempo mit Live-Transkript, Audioaufnahme und WPM-Feedback." },
+  "extDescription": { "message": "Verfolgen Sie das Sprechtempo mit Live-Transkript, Audioaufnahme und WPM-Feedback." },
   "openAirtime": { "message": "Airtime öffnen" },
   "settings": { "message": "Einstellungen" },
   "close": { "message": "Schließen" },

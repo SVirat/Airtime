@@ -1,6 +1,6 @@
 {
   "extName": { "message": "Airtime - ライブスピーチトラッキング" },
-  "extDescription": { "message": "ライブ文字起こし、音声録音、WPM フィードバックでスピーチのペースを練習しましょう。" },
+  "extDescription": { "message": "ライブ文字起こし、音声録音、WPM フィードバックでスピーチのペースを追跡しましょう。" },
   "openAirtime": { "message": "Airtime を開く" },
   "settings": { "message": "設定" },
   "close": { "message": "閉じる" },

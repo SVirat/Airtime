@@ -113,6 +113,9 @@
           <div class="airtime-history" id="airtime-history">
             <div class="airtime-history-empty">No recordings yet</div>
           </div>
+          <div class="airtime-share">
+            <a href="https://chromewebstore.google.com/detail/airtime" target="_blank" rel="noopener noreferrer">Share</a> us with your friends.
+          </div>
         </div>
       </div>
     </div>

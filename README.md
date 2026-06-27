@@ -1,20 +1,10 @@
-<div align="center">
+<p align="center">
   <img src="icons/icon128.png" alt="Airtime icon" width="128" height="128">
-
-# Airtime
-</div>
-
-### Practice speech pacing in real-time
-
-A lightweight Chrome extension to **practice the pace of your speech**. Airtime adds a small, draggable widget to any page with a microphone button, a live transcript, and a real‑time **words‑per‑minute (WPM)** meter that turns green when you're in your ideal range and red when you're too fast or too slow.
-
-<p>
-  <img alt="Manifest V3" src="https://img.shields.io/badge/Manifest-V3-FFA116?style=flat-square" />
-  <img alt="Platform" src="https://img.shields.io/badge/Platform-Chromium-FF8A00?style=flat-square" />
-  <img alt="Version" src="https://img.shields.io/badge/Version-1.0.1-FF375F?style=flat-square" />
 </p>
 
+# Airtime
 
+A lightweight Chrome extension to **practice the pace of your speech**. Airtime adds a small, draggable widget to any page with a microphone button, a live transcript, and a real‑time **words‑per‑minute (WPM)** meter that turns green when you're in your ideal range and red when you're too fast or too slow.
 
 ## Features
 
@@ -26,6 +16,7 @@ A lightweight Chrome extension to **practice the pace of your speech**. Airtime 
 - ▶️ **Inline replay** — play any saved recording without downloading it.
 - ⬇️ **Downloads** — export the audio (`.webm`) and transcript (`.txt`), named `Airtime_<length>_<WPM>wpm` (e.g. `Airtime_2m30s_130wpm`).
 - ⚙️ **Settings** — set your ideal WPM range, enable **Download on discard**, and toggle **Dark mode**.
+- 🪟 **Draggable & resizable** — move the widget by its header and resize it from the bottom‑right corner.
 - 🔁 **Persistence** — recordings and settings are stored locally via `chrome.storage` and survive new tabs, closing the widget, and restarting Chrome.
 
 ## Installation (unpacked)
@@ -89,3 +80,7 @@ Airtime/
 ├─ PRIVACY_POLICY.md
 └─ LICENSE
 ```
+
+## License
+
+Proprietary — all rights reserved. See the [LICENSE](LICENSE) file. You may not copy, modify, distribute, or use this software commercially without prior written permission from the copyright holder.

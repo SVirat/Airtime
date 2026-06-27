@@ -11,13 +11,18 @@
   top: 24px;
   right: 24px;
   width: 280px;
+  min-width: 240px;
+  max-width: 92vw;
+  min-height: 160px;
+  max-height: 92vh;
   z-index: 2147483647;
   background: #ffffff;
   color: #1f2933;
   border: 1px solid #e3e8ee;
   border-radius: 14px;
   box-shadow: 0 8px 28px rgba(31, 41, 51, 0.18);
-  overflow: hidden;
+  overflow: auto;
+  resize: both;
   user-select: none;
 }
 
@@ -385,6 +390,18 @@
   text-align: center;
   padding: 4px 0;
 }
+.airtime-share {
+  margin-top: 8px;
+  font-size: 11px;
+  text-align: center;
+  color: #9aa5b1;
+}
+.airtime-share a {
+  color: #1e88e5;
+  text-decoration: none;
+  font-weight: 600;
+}
+.airtime-share a:hover { text-decoration: underline; }
 .airtime-item {
   border: 1px solid #e3e8ee;
   border-radius: 10px;
@@ -531,3 +548,5 @@
 #airtime-root.airtime-dark .airtime-dl:hover { background: #323d4d; }
 #airtime-root.airtime-dark .airtime-clear:hover { background: #313c4a; }
 #airtime-root.airtime-dark .airtime-transcript::-webkit-scrollbar-thumb { background: #3a4656; }
+#airtime-root.airtime-dark .airtime-share { color: #7d8a99; }
+#airtime-root.airtime-dark .airtime-share a { color: #5aa9ee; }

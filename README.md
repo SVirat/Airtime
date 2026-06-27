@@ -89,7 +89,3 @@ Airtime/
 ├─ PRIVACY_POLICY.md
 └─ LICENSE
 ```
-
-## License
-
-Released under the [MIT License](LICENSE).

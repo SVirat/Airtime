@@ -4,7 +4,7 @@
 
 # Airtime
 
-A lightweight Chrome extension to **practice the pace of your speech**. Airtime adds a small, draggable widget to any page with a microphone button, a live transcript, and a real‑time **words‑per‑minute (WPM)** meter that turns green when you're in your ideal range and red when you're too fast or too slow.
+A lightweight Chrome extension to **track the pace of your speech**. Airtime adds a small, draggable widget to any page with a microphone button, a live transcript, and a real‑time **words‑per‑minute (WPM)** meter that turns green when you're in your ideal range and red when you're too fast or too slow.
 
 ## Features
 

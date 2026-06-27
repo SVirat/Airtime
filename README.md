@@ -1,10 +1,20 @@
-<p align="center">
+<div align="center">
   <img src="icons/icon128.png" alt="Airtime icon" width="128" height="128">
-</p>
 
 # Airtime
+</div>
+
+### Practice speech pacing in real-time
 
 A lightweight Chrome extension to **practice the pace of your speech**. Airtime adds a small, draggable widget to any page with a microphone button, a live transcript, and a real‑time **words‑per‑minute (WPM)** meter that turns green when you're in your ideal range and red when you're too fast or too slow.
+
+<p>
+  <img alt="Manifest V3" src="https://img.shields.io/badge/Manifest-V3-FFA116?style=flat-square" />
+  <img alt="Platform" src="https://img.shields.io/badge/Platform-Chromium-FF8A00?style=flat-square" />
+  <img alt="Version" src="https://img.shields.io/badge/Version-1.0.1-FF375F?style=flat-square" />
+</p>
+
+
 
 ## Features
 
